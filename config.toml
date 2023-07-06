@@ -1,0 +1,52 @@
+baseURL = "http://localhost:1313"
+languageCode = "en-us"
+title = "Pieces & Perspective Blog"
+author ="xbns"
+
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines =  " "
+    lineAnchors = ""
+    lineNos = true
+    lineNoStart = 1
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
+
+[params]
+	mode="auto" #auto or dark
+	featherIconsCDN=true
+	subtitle = "Pieces and Perspectives Blog"
+
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/xbns"
+
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
+
+

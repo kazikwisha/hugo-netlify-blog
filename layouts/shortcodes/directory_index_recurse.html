@@ -1,0 +1,71 @@
+
+{{ $pathURL := .Get "pathURL" }}
+
+{{ define "read-dir" }}
+
+	{{ $pathURL := .pathurl }}
+	{{ $currentPath := .currentpath }}
+
+	{{ $files := readDir (printf "/static%s" $currentPath) }}
+
+		{{ range $files }}
+
+			{{ $fstat := os.Stat (printf "/static%s/%s" $currentPath .Name ) }}
+			{{ $file_or_dir := printf "%s/%s" $currentPath .Name }}
+
+			{{ if $fstat.IsDir }}
+				<tr>
+					<td class="table-active" >{{ .Name }}</td>
+					<td class="table-active"></td>
+					<td class="table-active"></td>
+				</tr>
+				<!-- recursive call-->
+				{{ template "read-dir" dict "pathurl" $pathURL "currentpath" $file_or_dir }}
+
+			{{ else }}
+
+				<tr>
+					<td></td>
+					<td>
+						<a href="{{ $file_or_dir }}"   class="hover-animate-from-left">
+							{{ .Name }}
+						</a>
+					</td>
+					<td >{{ .Size }}</td>
+				</tr>
+			{{ end }}
+		{{ end }}
+
+{{ end }}
+
+<!-- thead and tbody tags and table id are required for the
+	bs-datatable.js utility script which takes care about search
+	sort and pagination functionality -->
+
+<script>
+	$(document).ready(function() {
+		$('#datatable2').dataTable( { "ordering": false, "order": [], } );
+		$('#datatable2_length select').val('50').change();
+	});
+</script>
+
+<div class="table-responsive">
+
+	<table id="datatable2"
+		class="table table-bordered nobottommargin"
+		cellspacing="0">
+		<thead>
+			<th>Name:</th>
+			<th>Download-Link:</th>
+			<th>Size/Byte:</th>
+		</thead>
+		<tbody>
+			{{ template "read-dir" dict "pathurl" $pathURL "currentpath" $pathURL }}
+		</tbody>
+	</table>
+
+</div>
+
+
+<!-- REFERENCE
+http://www.johann-oberdorfer.eu/blog/2020/07/03/20-07-03_recursive_function_in_hugo/ -->

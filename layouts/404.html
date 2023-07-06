@@ -1,0 +1,12 @@
+{{ define "main"}}
+    <main id="main">
+      <div>
+        <figure>
+          <img src= '{{ "/images/404.png" | relURL }}'  alt ="Page not found!" id="center"/>
+        </figure>
+        <h2 style="text-align: center">
+            <a href="{{ "/" | relURL }}">Back Home</a>
+        </h2>
+      </div>
+    </main>
+{{ end }}

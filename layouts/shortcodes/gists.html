@@ -1,0 +1,13 @@
+<ul>
+  {{ $urlPre := "https://api.github.com" }}
+  {{ $gistJ  := getJSON $urlPre "/users/xbns/gists" }}
+
+  {{ range  $gistJ }}
+
+    {{ if .public }}
+
+  <li><a href=" {{ .html_url }} " target="_blank">{{ .description }}</a></li>
+    {{ end }}
+
+  {{ end }}
+</ul>

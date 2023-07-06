@@ -1,0 +1,18 @@
+@startuml
+while(Bug reported by Tester)
+- NEW;
+endwhile
+while(Project Lead or Test Lead defines the status & Assigns to the developer);
+- ASSIGNED;
+- Developer will fix it & update the defect status;
+- FIXED;
+endwhile
+while(Tester will verify it & change the status) is (Verified  & Not Fixed)
+- Verified & Fixed,Verified & Not -Fixed,Closed;
+- Change the Status and reassign;
+endwhile
+- REOPEN;
+- Both the team will decide the future of the defect;
+- Invalid,Rejected,Deferred,Duplicate,Non-Recreatable;
+@enduml
+
